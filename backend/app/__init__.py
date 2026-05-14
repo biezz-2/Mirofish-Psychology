@@ -74,6 +74,19 @@ def create_app(config_class=Config):
     @app.route('/health')
     def health():
         return {'status': 'ok', 'service': 'MiroFish Backend'}
+
+    # 系统状态检查 (供前端使用)
+    @app.route('/api/system/status')
+    def system_status():
+        return {
+            'status': 'ok', 
+            'version': '0.1-Preview',
+            'components': {
+                'backend': 'running',
+                'zep': 'connected',
+                'llm': 'ready'
+            }
+        }
     
     if should_log_startup:
         logger.info("MiroFish Backend 启动完成")

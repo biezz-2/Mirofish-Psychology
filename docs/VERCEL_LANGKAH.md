@@ -2,6 +2,21 @@
 
 Ikuti urutan ini setelah kode sudah ada di GitHub [`biezz-2/Mirofish-Psychology`](https://github.com/biezz-2/Mirofish-Psychology).
 
+## 🗺️ Alur Deploy
+
+```mermaid
+flowchart TD
+    A[Push Code ke GitHub] --> B[Impor ke Vercel]
+    B --> C{Konfigurasi}
+    C -->|Root| D[frontend/]
+    C -->|Env| E[VITE_API_BASE_URL]
+    D --> F[Build Command: npm run build]
+    E --> G[Target: Backend API]
+    F --> H[Deploy Success]
+    G --> H
+    H --> I[Cek Route /integration]
+```
+
 ## 1. Login & import
 
 1. Buka [vercel.com](https://vercel.com) → login dengan GitHub.

@@ -31,7 +31,7 @@
           <div v-if="selectedOntologyItem" class="ontology-detail-overlay">
             <div class="detail-header">
                <div class="detail-title-group">
-                  <span class="detail-type-badge">{{ selectedOntologyItem.itemType === 'entity' ? 'ENTITY' : 'RELATION' }}</span>
+                  <span class="detail-type-badge">{{ selectedOntologyItem.itemType === 'entity' ? $t('step1.entity') : $t('step1.relation') }}</span>
                   <span class="detail-name">{{ selectedOntologyItem.name }}</span>
                </div>
                <button class="close-btn" @click="selectedOntologyItem = null">×</button>
@@ -41,7 +41,7 @@
                
                <!-- Attributes -->
                <div class="detail-section" v-if="selectedOntologyItem.attributes?.length">
-                  <span class="section-label">ATTRIBUTES</span>
+                  <span class="section-label">{{ $t('step1.attributes') }}</span>
                   <div class="attr-list">
                      <div v-for="attr in selectedOntologyItem.attributes" :key="attr.name" class="attr-item">
                         <span class="attr-name">{{ attr.name }}</span>
@@ -53,7 +53,7 @@
 
                <!-- Examples (Entity) -->
                <div class="detail-section" v-if="selectedOntologyItem.examples?.length">
-                  <span class="section-label">EXAMPLES</span>
+                  <span class="section-label">{{ $t('step1.examples') }}</span>
                   <div class="example-list">
                      <span v-for="ex in selectedOntologyItem.examples" :key="ex" class="example-tag">{{ ex }}</span>
                   </div>
@@ -61,7 +61,7 @@
 
                <!-- Source/Target (Relation) -->
                <div class="detail-section" v-if="selectedOntologyItem.source_targets?.length">
-                  <span class="section-label">CONNECTIONS</span>
+                  <span class="section-label">{{ $t('step1.connections') }}</span>
                   <div class="conn-list">
                      <div v-for="(conn, idx) in selectedOntologyItem.source_targets" :key="idx" class="conn-item">
                         <span class="conn-node">{{ conn.source }}</span>
@@ -75,7 +75,7 @@
 
           <!-- Generated Entity Tags -->
           <div v-if="projectData?.ontology?.entity_types" class="tags-container" :class="{ 'dimmed': selectedOntologyItem }">
-            <span class="tag-label">GENERATED ENTITY TYPES</span>
+            <span class="tag-label">{{ $t('step1.generatedEntityTypes') }}</span>
             <div class="tags-list">
               <span 
                 v-for="entity in projectData.ontology.entity_types" 
@@ -90,7 +90,7 @@
 
           <!-- Generated Relation Tags -->
           <div v-if="projectData?.ontology?.edge_types" class="tags-container" :class="{ 'dimmed': selectedOntologyItem }">
-            <span class="tag-label">GENERATED RELATION TYPES</span>
+            <span class="tag-label">{{ $t('step1.generatedRelationTypes') }}</span>
             <div class="tags-list">
               <span 
                 v-for="rel in projectData.ontology.edge_types" 
@@ -173,8 +173,8 @@
     <!-- Bottom Info / Logs -->
     <div class="system-logs">
       <div class="log-header">
-        <span class="log-title">SYSTEM DASHBOARD</span>
-        <span class="log-id">{{ projectData?.project_id || 'NO_PROJECT' }}</span>
+        <span class="log-title">{{ $t('step1.systemDashboard') }}</span>
+        <span class="log-id">{{ projectData?.project_id || $t('step1.noProject') }}</span>
       </div>
       <div class="log-content" ref="logContent">
         <div class="log-line" v-for="(log, idx) in systemLogs" :key="idx">
@@ -275,7 +275,7 @@ watch(() => props.systemLogs.length, () => {
 <style scoped>
 .workbench-panel {
   height: 100%;
-  background-color: #FAFAFA;
+  background: transparent;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -292,25 +292,33 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .step-card {
-  background: #FFF;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  border: 1px solid #EAEAEA;
-  transition: all 0.3s ease;
+  background: rgba(20, 20, 20, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative; /* For absolute overlay */
 }
 
 .step-card.active {
-  border-color: #FF5722;
-  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.08);
+  border-color: rgba(255, 87, 34, 0.4);
+  box-shadow: 0 4px 20px rgba(255, 87, 34, 0.15);
+  background: rgba(30, 20, 15, 0.6);
+}
+
+.step-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .step-info {
@@ -323,18 +331,19 @@ watch(() => props.systemLogs.length, () => {
   font-family: 'JetBrains Mono', monospace;
   font-size: 20px;
   font-weight: 700;
-  color: #E0E0E0;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .step-card.active .step-num,
 .step-card.completed .step-num {
-  color: #000;
+  color: #FF5722;
 }
 
 .step-title {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .badge {
@@ -345,28 +354,28 @@ watch(() => props.systemLogs.length, () => {
   text-transform: uppercase;
 }
 
-.badge.success { background: #E8F5E9; color: #2E7D32; }
-.badge.processing { background: #FF5722; color: #FFF; }
-.badge.accent { background: #FF5722; color: #FFF; }
-.badge.pending { background: #F5F5F5; color: #999; }
+.badge.success { background: rgba(46, 125, 50, 0.2); color: #81C784; border: 1px solid rgba(129, 199, 132, 0.2); }
+.badge.processing { background: rgba(255, 87, 34, 0.2); color: #FFCCBC; border: 1px solid rgba(255, 87, 34, 0.3); }
+.badge.accent { background: rgba(255, 87, 34, 0.2); color: #FFF; border: 1px solid rgba(255, 87, 34, 0.3); }
+.badge.pending { background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); }
 
 .api-note {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: #999;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 8px;
 }
 
 .description {
-  font-size: 12px;
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 16px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 /* Step 01 Tags */
 .tags-container {
-  margin-top: 12px;
+  margin-top: 16px;
   transition: opacity 0.3s;
 }
 
@@ -378,9 +387,10 @@ watch(() => props.systemLogs.length, () => {
 .tag-label {
   display: block;
   font-size: 10px;
-  color: #AAA;
-  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .tags-list {
@@ -390,12 +400,12 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .entity-tag {
-  background: #F5F5F5;
-  border: 1px solid #EEE;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 11px;
-  color: #333;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
   font-family: 'JetBrains Mono', monospace;
   transition: all 0.2s;
 }
@@ -405,8 +415,9 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .entity-tag.clickable:hover {
-    background: #E0E0E0;
-    border-color: #CCC;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #FFF;
 }
 
 /* Ontology Detail Overlay */
@@ -416,121 +427,126 @@ watch(() => props.systemLogs.length, () => {
     left: 20px;
     right: 20px;
     bottom: 20px;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(4px);
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     z-index: 10;
-    border: 1px solid #EAEAEA;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    animation: fadeIn 0.2s ease-out;
+    animation: fadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .detail-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid #EAEAEA;
-    background: #FAFAFA;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .detail-title-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 .detail-type-badge {
     font-size: 9px;
     font-weight: 700;
-    color: #FFF;
-    background: #000;
-    padding: 2px 6px;
-    border-radius: 2px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3px 6px;
+    border-radius: 4px;
     text-transform: uppercase;
 }
 
 .detail-name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     font-family: 'JetBrains Mono', monospace;
+    color: #FFF;
 }
 
 .close-btn {
     background: none;
     border: none;
-    font-size: 18px;
-    color: #999;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     line-height: 1;
+    transition: color 0.2s;
 }
 
 .close-btn:hover {
-    color: #333;
+    color: #FFF;
 }
 
 .detail-body {
     flex: 1;
     overflow-y: auto;
-    padding: 16px;
+    padding: 20px;
 }
 
 .detail-desc {
-    font-size: 12px;
-    color: #444;
-    line-height: 1.5;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px dashed #EAEAEA;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .detail-section {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .section-label {
     display: block;
     font-size: 10px;
     font-weight: 600;
-    color: #AAA;
-    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
 }
 
 .attr-list, .conn-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .attr-item {
-    font-size: 11px;
+    font-size: 12px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
     align-items: baseline;
-    padding: 4px;
-    background: #F9F9F9;
-    border-radius: 4px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
 }
 
 .attr-name {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
-    color: #000;
+    color: #FFF;
 }
 
 .attr-type {
-    color: #999;
-    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 11px;
 }
 
 .attr-desc {
-    color: #555;
+    color: rgba(255, 255, 255, 0.6);
     flex: 1;
     min-width: 150px;
 }
@@ -538,104 +554,130 @@ watch(() => props.systemLogs.length, () => {
 .example-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
 }
 
 .example-tag {
     font-size: 11px;
-    background: #FFF;
-    border: 1px solid #E0E0E0;
-    padding: 3px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
     border-radius: 12px;
-    color: #555;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .conn-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 11px;
-    padding: 6px;
-    background: #F5F5F5;
-    border-radius: 4px;
+    font-size: 12px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
     font-family: 'JetBrains Mono', monospace;
 }
 
 .conn-node {
     font-weight: 600;
-    color: #333;
+    color: #FFF;
 }
 
 .conn-arrow {
-    color: #BBB;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 /* Step 02 Stats */
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  background: #F9F9F9;
-  padding: 16px;
-  border-radius: 6px;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stat-card {
   text-align: center;
+  padding: 16px 0;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .stat-value {
   display: block;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  color: #000;
+  color: #FFF;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .stat-label {
-  font-size: 9px;
-  color: #999;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 6px;
   display: block;
+  letter-spacing: 0.5px;
 }
 
 /* Step 03 Button */
 .action-btn {
   width: 100%;
-  background: #000;
+  background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
   color: #FFF;
   border: none;
   padding: 14px;
-  border-radius: 4px;
-  font-size: 12px;
+  border-radius: 6px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .action-btn:hover:not(:disabled) {
-  opacity: 0.8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 87, 34, 0.4);
 }
 
 .action-btn:disabled {
-  background: #CCC;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  box-shadow: none;
   cursor: not-allowed;
+  transform: none;
 }
 
 .progress-section {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 12px;
+  gap: 12px;
+  font-size: 13px;
   color: #FF5722;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  background: rgba(255, 87, 34, 0.05);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 87, 34, 0.1);
 }
 
 .spinner-sm {
-  width: 14px;
-  height: 14px;
-  border: 2px solid #FFCCBC;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 87, 34, 0.2);
   border-top-color: #FF5722;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -645,31 +687,36 @@ watch(() => props.systemLogs.length, () => {
 
 /* System Logs */
 .system-logs {
-  background: #000;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #DDD;
-  padding: 16px;
+  padding: 16px 24px;
   font-family: 'JetBrains Mono', monospace;
-  border-top: 1px solid #222;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   flex-shrink: 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
 }
 
 .log-header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 8px;
   margin-bottom: 8px;
-  font-size: 10px;
-  color: #888;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .log-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  height: 80px; /* Approx 4 lines visible */
+  gap: 6px;
+  height: 100px;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 8px;
 }
 
 .log-content::-webkit-scrollbar {
@@ -677,24 +724,24 @@ watch(() => props.systemLogs.length, () => {
 }
 
 .log-content::-webkit-scrollbar-thumb {
-  background: #333;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
 }
 
 .log-line {
-  font-size: 11px;
+  font-size: 12px;
   display: flex;
   gap: 12px;
   line-height: 1.5;
 }
 
 .log-time {
-  color: #666;
-  min-width: 75px;
+  color: rgba(255, 255, 255, 0.3);
+  min-width: 85px;
 }
 
 .log-msg {
-  color: #CCC;
-  word-break: break-all;
+  color: rgba(255, 255, 255, 0.8);
+  word-break: break-word;
 }
 </style>

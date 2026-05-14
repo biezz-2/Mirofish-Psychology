@@ -320,20 +320,24 @@ onUnmounted(() => {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #FFF;
+  background: radial-gradient(circle at top right, #1a1a2e, #16213e, #0f3460);
+  background-attachment: fixed;
   overflow: hidden;
   font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
+  color: #ffffff;
 }
 
 /* Header */
 .app-header {
-  height: 60px;
-  border-bottom: 1px solid #EAEAEA;
+  height: 64px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.125);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: #FFF;
   z-index: 100;
   position: relative;
 }
@@ -347,88 +351,112 @@ onUnmounted(() => {
 .brand {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 1px;
+  font-size: 20px;
+  letter-spacing: 2px;
   cursor: pointer;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(79, 172, 254, 0.4));
 }
 
 .view-switcher {
   display: flex;
-  background: #F5F5F5;
+  background: rgba(255, 255, 255, 0.05);
   padding: 4px;
-  border-radius: 6px;
+  border-radius: 12px;
   gap: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .switch-btn {
   border: none;
   background: transparent;
-  padding: 6px 16px;
-  font-size: 12px;
+  padding: 6px 18px;
+  font-size: 13px;
   font-weight: 600;
-  color: #666;
-  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .switch-btn.active {
-  background: #FFF;
-  color: #000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .workflow-step {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 14px;
 }
 
 .step-num {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .step-name {
   font-weight: 700;
-  color: #000;
+  color: #fff;
+  letter-spacing: 0.5px;
 }
 
 .step-divider {
   width: 1px;
-  height: 14px;
-  background-color: #E0E0E0;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .status-indicator {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #666;
-  font-weight: 500;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #CCC;
+  background: #666;
 }
 
-.status-indicator.processing .dot { background: #FF5722; animation: pulse 1s infinite; }
-.status-indicator.completed .dot { background: #4CAF50; }
-.status-indicator.error .dot { background: #F44336; }
+.status-indicator.processing .dot { 
+  background: #00f2fe; 
+  box-shadow: 0 0 10px #00f2fe;
+  animation: pulse 1.5s infinite; 
+}
+.status-indicator.completed .dot { 
+  background: #00e676; 
+  box-shadow: 0 0 10px #00e676;
+}
+.status-indicator.error .dot { 
+  background: #ff5252; 
+  box-shadow: 0 0 10px #ff5252;
+}
 
-@keyframes pulse { 50% { opacity: 0.5; } }
+@keyframes pulse { 
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
 
 /* Content */
 .content-area {
@@ -436,17 +464,24 @@ onUnmounted(() => {
   display: flex;
   position: relative;
   overflow: hidden;
+  padding: 12px;
+  gap: 12px;
 }
 
 .panel-wrapper {
   height: 100%;
   overflow: hidden;
-  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease, transform 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: width, opacity, transform;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .panel-wrapper.left {
-  border-right: 1px solid #EAEAEA;
+  /* No explicit border-right here as gap is used in content-area */
 }
 </style>
 

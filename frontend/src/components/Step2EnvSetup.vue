@@ -1088,7 +1088,8 @@ onUnmounted(() => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #FAFAFA;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.2);
   font-family: 'Space Grotesk', 'Noto Sans SC', system-ui, sans-serif;
 }
 
@@ -1103,18 +1104,21 @@ onUnmounted(() => {
 
 /* Step Card */
 .step-card {
-  background: #FFF;
-  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.5);
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  border: 1px solid #EAEAEA;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
   position: relative;
 }
 
 .step-card.active {
   border-color: #FF5722;
-  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.08);
+  box-shadow: 0 4px 24px rgba(255, 87, 34, 0.15);
+  background: rgba(30, 25, 25, 0.6);
 }
 
 .card-header {
@@ -1134,12 +1138,12 @@ onUnmounted(() => {
   font-family: 'JetBrains Mono', monospace;
   font-size: 20px;
   font-weight: 700;
-  color: #E0E0E0;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .step-card.active .step-num,
 .step-card.completed .step-num {
-  color: #000;
+  color: #FFF;
 }
 
 .step-title {
@@ -1158,7 +1162,8 @@ onUnmounted(() => {
 
 .badge.success { background: #E8F5E9; color: #2E7D32; }
 .badge.processing { background: #FF5722; color: #FFF; }
-.badge.pending { background: #F5F5F5; color: #999; }
+.badge.pending { background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.4); }
 .badge.accent { background: #E3F2FD; color: #1565C0; }
 
 .card-content {
@@ -1168,13 +1173,13 @@ onUnmounted(() => {
 .api-note {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 8px;
 }
 
 .description {
   font-size: 12px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.5;
   margin-bottom: 16px;
 }
@@ -1207,8 +1212,9 @@ onUnmounted(() => {
 }
 
 .action-btn.secondary {
-  background: #F5F5F5;
-  color: #333;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .action-btn.secondary:hover:not(:disabled) {
@@ -1237,7 +1243,8 @@ onUnmounted(() => {
 
 /* Info Card */
 .info-card {
-  background: #F5F5F5;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   padding: 16px;
   margin-top: 16px;
@@ -1257,7 +1264,7 @@ onUnmounted(() => {
 
 .info-label {
   font-size: 12px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .info-value {
@@ -1275,7 +1282,8 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 16px;
   border-radius: 6px;
 }
@@ -1288,13 +1296,13 @@ onUnmounted(() => {
   display: block;
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: #FFF;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .stat-label {
   font-size: 9px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
   margin-top: 4px;
   display: block;
@@ -1303,7 +1311,7 @@ onUnmounted(() => {
 /* Profiles Preview */
 .profiles-preview {
   margin-top: 20px;
-  border-top: 1px solid #E5E5E5;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 16px;
 }
 
@@ -1317,7 +1325,7 @@ onUnmounted(() => {
 .preview-title {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -1331,22 +1339,15 @@ onUnmounted(() => {
   padding-right: 4px;
 }
 
-.profiles-list::-webkit-scrollbar {
-  width: 4px;
-}
 
-.profiles-list::-webkit-scrollbar-thumb {
-  background: #DDD;
-  border-radius: 2px;
-}
 
-.profiles-list::-webkit-scrollbar-thumb:hover {
-  background: #CCC;
-}
+
+
+
 
 .profile-card {
-  background: #FAFAFA;
-  border: 1px solid #E5E5E5;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   padding: 14px;
   cursor: pointer;
@@ -1354,8 +1355,8 @@ onUnmounted(() => {
 }
 
 .profile-card:hover {
-  border-color: #999;
-  background: #FFF;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(20, 20, 20, 0.5);
 }
 
 .profile-header {
@@ -1368,13 +1369,13 @@ onUnmounted(() => {
 .profile-realname {
   font-size: 14px;
   font-weight: 700;
-  color: #000;
+  color: #FFF;
 }
 
 .profile-username {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .profile-meta {
@@ -1383,15 +1384,15 @@ onUnmounted(() => {
 
 .profile-profession {
   font-size: 11px;
-  color: #666;
-  background: #F0F0F0;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
   padding: 2px 8px;
   border-radius: 3px;
 }
 
 .profile-bio {
   font-size: 12px;
-  color: #444;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
   margin: 0 0 10px 0;
   display: -webkit-box;
@@ -1416,7 +1417,7 @@ onUnmounted(() => {
 
 .topic-more {
   font-size: 10px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   padding: 2px 6px;
 }
 
@@ -1428,7 +1429,7 @@ onUnmounted(() => {
 
 .config-block {
   margin-top: 16px;
-  border-top: 1px solid #E5E5E5;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 12px;
 }
 
@@ -1448,7 +1449,7 @@ onUnmounted(() => {
 .config-block-title {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -1456,7 +1457,7 @@ onUnmounted(() => {
 .config-block-badge {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.05);
   color: #475569;
   padding: 2px 8px;
   border-radius: 10px;
@@ -1470,7 +1471,8 @@ onUnmounted(() => {
 }
 
 .config-item {
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 12px 14px;
   border-radius: 6px;
   display: flex;
@@ -1503,7 +1505,8 @@ onUnmounted(() => {
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
 }
 
@@ -1541,30 +1544,24 @@ onUnmounted(() => {
   padding-right: 4px;
 }
 
-.agents-cards::-webkit-scrollbar {
-  width: 4px;
-}
 
-.agents-cards::-webkit-scrollbar-thumb {
-  background: #DDD;
-  border-radius: 2px;
-}
 
-.agents-cards::-webkit-scrollbar-thumb:hover {
-  background: #CCC;
-}
+
+
+
 
 .agent-card {
-  background: #F9F9F9;
-  border: 1px solid #E5E5E5;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   padding: 14px;
   transition: all 0.2s ease;
 }
 
 .agent-card:hover {
-  border-color: #999;
-  background: #FFF;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(20, 20, 20, 0.5);
 }
 
 /* Agent Card Header */
@@ -1574,7 +1571,7 @@ onUnmounted(() => {
   align-items: flex-start;
   margin-bottom: 14px;
   padding-bottom: 12px;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .agent-identity {
@@ -1603,7 +1600,7 @@ onUnmounted(() => {
 .agent-type {
   font-size: 10px;
   color: #64748B;
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.05);
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -1617,7 +1614,7 @@ onUnmounted(() => {
 }
 
 .stance-neutral {
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.05);
   color: #64748B;
 }
 
@@ -1654,14 +1651,14 @@ onUnmounted(() => {
   display: flex;
   gap: 2px;
   height: 16px;
-  background: #F8FAFC;
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 3px;
 }
 
 .timeline-hour {
   flex: 1;
-  background: #E2E8F0;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   transition: all 0.2s;
 }
@@ -1748,7 +1745,8 @@ onUnmounted(() => {
 }
 
 .platform-card {
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 14px;
   border-radius: 6px;
 }
@@ -1756,13 +1754,13 @@ onUnmounted(() => {
 .platform-card-header {
   margin-bottom: 10px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .platform-name {
   font-size: 13px;
   font-weight: 600;
-  color: #333;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .platform-params {
@@ -1798,13 +1796,14 @@ onUnmounted(() => {
 
 .reasoning-item {
   padding: 12px 14px;
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
 }
 
 .reasoning-text {
   font-size: 13px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.7;
   margin: 0;
 }
@@ -1825,7 +1824,7 @@ onUnmounted(() => {
 }
 
 .profile-modal {
-  background: #FFF;
+  background: rgba(20, 20, 20, 0.5);
   border-radius: 16px;
   width: 90%;
   max-width: 600px;
@@ -1841,8 +1840,8 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: flex-start;
   padding: 24px;
-  background: #FFF;
-  border-bottom: 1px solid #F0F0F0;
+  background: rgba(20, 20, 20, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modal-header-info {
@@ -1859,19 +1858,20 @@ onUnmounted(() => {
 .modal-realname {
   font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: #FFF;
 }
 
 .modal-username {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .modal-profession {
   font-size: 12px;
-  color: #666;
-  background: #F5F5F5;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 4px 10px;
   border-radius: 4px;
   display: inline-block;
@@ -1883,7 +1883,7 @@ onUnmounted(() => {
   height: 32px;
   border: none;
   background: none;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   font-size: 24px;
   cursor: pointer;
@@ -1896,7 +1896,7 @@ onUnmounted(() => {
 }
 
 .close-btn:hover {
-  color: #333;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .modal-body {
@@ -1924,7 +1924,7 @@ onUnmounted(() => {
 
 .info-label {
   font-size: 11px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -1933,7 +1933,7 @@ onUnmounted(() => {
 .info-value {
   font-size: 15px;
   font-weight: 600;
-  color: #333;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .info-value.mbti {
@@ -1950,7 +1950,7 @@ onUnmounted(() => {
   display: block;
   font-size: 11px;
   font-weight: 600;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
@@ -1958,11 +1958,12 @@ onUnmounted(() => {
 
 .section-bio {
   font-size: 14px;
-  color: #333;
+  color: rgba(255, 255, 255, 0.2);
   line-height: 1.6;
   margin: 0;
   padding: 16px;
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   border-left: 3px solid #E0E0E0;
 }
@@ -2006,15 +2007,15 @@ onUnmounted(() => {
 }
 
 .dimension-card:hover {
-  background: #F0F0F0;
-  border-left-color: #999;
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: rgba(255, 255, 255, 0.4);
 }
 
 .dim-title {
   display: block;
   font-size: 12px;
   font-weight: 700;
-  color: #333;
+  color: rgba(255, 255, 255, 0.2);
   margin-bottom: 4px;
 }
 
@@ -2045,7 +2046,7 @@ onUnmounted(() => {
 
 .section-persona {
   font-size: 13px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.8;
   margin: 0;
   text-align: justify;
@@ -2097,7 +2098,7 @@ onUnmounted(() => {
 }
 
 .log-time {
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   min-width: 75px;
 }
 
@@ -2131,7 +2132,7 @@ onUnmounted(() => {
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
@@ -2150,7 +2151,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
@@ -2177,7 +2178,7 @@ onUnmounted(() => {
 }
 
 .topics-section {
-  background: #FFF;
+  background: rgba(20, 20, 20, 0.5);
 }
 
 .hot-topics-grid {
@@ -2197,7 +2198,7 @@ onUnmounted(() => {
 
 .hot-topic-more {
   font-size: 11px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   padding: 4px 6px;
 }
 
@@ -2230,7 +2231,8 @@ onUnmounted(() => {
 }
 
 .timeline-content {
-  background: #F9F9F9;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #EEE;
@@ -2245,7 +2247,7 @@ onUnmounted(() => {
 .post-role {
   font-size: 11px;
   font-weight: 700;
-  color: #333;
+  color: rgba(255, 255, 255, 0.2);
   text-transform: uppercase;
 }
 
@@ -2259,7 +2261,7 @@ onUnmounted(() => {
 .post-username {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1;
   vertical-align: baseline;
 }
@@ -2270,7 +2272,7 @@ onUnmounted(() => {
 
 .post-text {
   font-size: 12px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.5;
   margin: 0;
 }
@@ -2310,7 +2312,7 @@ onUnmounted(() => {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
   color: #1E293B;
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.05);
   padding: 1px 6px;
   border-radius: 4px;
   margin: 0 2px;
@@ -2328,7 +2330,7 @@ onUnmounted(() => {
 }
 
 .switch-control:hover {
-  background: #F8FAFC;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .switch-control input {
@@ -2338,7 +2340,7 @@ onUnmounted(() => {
 .switch-track {
   width: 36px;
   height: 20px;
-  background: #E2E8F0;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -2351,7 +2353,7 @@ onUnmounted(() => {
   top: 2px;
   width: 16px;
   height: 16px;
-  background: #FFF;
+  background: rgba(20, 20, 20, 0.5);
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -2397,12 +2399,12 @@ onUnmounted(() => {
   font-family: 'JetBrains Mono', monospace;
   font-size: 24px;
   font-weight: 700;
-  color: #000;
+  color: #FFF;
 }
 
 .val-unit {
   font-size: 12px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }
 
@@ -2410,7 +2412,7 @@ onUnmounted(() => {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   color: #64748B;
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.05);
   padding: 4px 8px;
   border-radius: 4px;
 }
@@ -2424,7 +2426,7 @@ onUnmounted(() => {
   -webkit-appearance: none;
   width: 100%;
   height: 4px;
-  background: #E2E8F0;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   outline: none;
   background-image: linear-gradient(#000, #000);
@@ -2438,7 +2440,7 @@ onUnmounted(() => {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #FFF;
+  background: rgba(20, 20, 20, 0.5);
   border: 2px solid #000;
   cursor: pointer;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
@@ -2472,11 +2474,11 @@ onUnmounted(() => {
 }
 
 .mark-recommend:hover {
-  color: #000;
+  color: #FFF;
 }
 
 .mark-recommend.active {
-  color: #000;
+  color: #FFF;
   font-weight: 600;
 }
 
@@ -2496,7 +2498,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 24px;
-  background: #F8FAFC;
+  background: rgba(0, 0, 0, 0.2);
   padding: 16px 20px;
   border-radius: 8px;
 }
@@ -2601,5 +2603,28 @@ onUnmounted(() => {
 .modal-leave-to .profile-modal {
   transform: scale(0.95) translateY(10px);
   opacity: 0;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #FF5722;
+  cursor: pointer;
+  margin-top: -6px;
+  box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
 }
 </style>

@@ -88,11 +88,76 @@ Click the image to watch MiroFish's deep prediction of the lost ending based on 
 
 ## 🔄 Workflow
 
+```mermaid
+graph TD
+    A[<b>Step 1: Graph Building</b><br/>Seed extraction & Knowledge Graph construction] --> B[<b>Step 2: Environment Setup</b><br/>Entity mapping & Persona generation]
+    B --> C[<b>Step 3: Simulation</b><br/>Dual-platform parallel social interaction]
+    C --> D[<b>Step 4: Report Generation</b><br/>AI Analysis & Insight synthesis]
+    D --> E[<b>Step 5: Deep Interaction</b><br/>Conversational exploration with Agents]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#00d2ff,stroke:#333,stroke-width:4px
+    style E fill:#9f9,stroke:#333,stroke-width:2px
+```
+
 1. **Graph Building**: Seed extraction & Individual/collective memory injection & GraphRAG construction
 2. **Environment Setup**: Entity relationship extraction & Persona generation & Agent configuration injection
 3. **Simulation**: Dual-platform parallel simulation & Auto-parse prediction requirements & Dynamic temporal memory updates
 4. **Report Generation**: ReportAgent with rich toolset for deep interaction with post-simulation environment
 5. **Deep Interaction**: Chat with any agent in the simulated world & Interact with ReportAgent
+
+## 🏗️ Architecture
+
+```mermaid
+C4Context
+    title System Architecture of MiroFish-Psychology
+
+    Person(user, "User", "Researcher / Decision Maker")
+    System_Boundary(miro, "MiroFish System") {
+        System(frontend, "Vue.js Frontend", "Modern Glassmorphism UI")
+        System(backend, "Flask Backend", "Core logic & Agent orchestration")
+        SystemDb(zep, "Zep / Graph DB", "Long-term memory & Relationship storage")
+    }
+
+    System_Ext(nim, "NVIDIA NIM (LLM)", "Mistral-Nemotron / Minimax-M2.7")
+    System_Ext(social, "Social Sandbox", "Parallel Plaza & Community simulation")
+
+    Rel(user, frontend, "Interacts with", "HTTPS/Vue")
+    Rel(frontend, backend, "API Calls", "REST/JSON")
+    Rel(backend, nim, "Generates Ontology/Actions", "OpenAI API")
+    Rel(backend, zep, "Stores/Retrieves", "GraphRAG")
+    Rel(backend, social, "Drives Simulation", "Agentic Actions")
+
+## 🧠 Digital Mirror Logic
+
+```mermaid
+flowchart LR
+    subgraph Real_World ["Real World Seed"]
+        direction TB
+        D1[Documents] --> E1[LLM Extraction]
+        E1 --> O1[Ontology]
+    end
+
+    subgraph Digital_Mirror ["Digital Mirror (MiroFish)"]
+        direction TB
+        O1 --> G1[(GraphRAG)]
+        G1 --> P1[Persona Generation]
+        P1 --> S1[Social Sandbox]
+        S1 --> T1[Temporal Memory]
+        T1 -- "Feedback Loop" --> G1
+    end
+
+    subgraph Prediction_Outcome ["Prediction Outcome"]
+        direction TB
+        S1 --> R1[Report Agent]
+        R1 --> F1{Insights & Future Paths}
+    end
+
+    style Digital_Mirror fill:#1a1a2e,stroke:#00d2ff,color:#fff
+    style Real_World fill:#16213e,stroke:#f9f,color:#fff
+    style Prediction_Outcome fill:#0f3460,stroke:#9f9,color:#fff
+```
+```
 
 ## 🚀 Quick Start
 

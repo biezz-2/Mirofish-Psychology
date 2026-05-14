@@ -90,6 +90,7 @@
     "layoutGraph": "Graph",
     "layoutSplit": "Split",
     "layoutWorkbench": "Workbench",
+    "stepPrefix": "Step",
     "stepNames": ["Graph Build", "Env Setup", "Run Simulation", "Report Generation", "Deep Interaction"]
   },
   "step1": {
@@ -110,7 +111,16 @@
     "creating": "Creating...",
     "enterEnvSetup": "Enter Environment Setup",
     "createSimulationFailed": "Failed to create simulation: {error}",
-    "createSimulationException": "Simulation creation error: {error}"
+    "createSimulationException": "Simulation creation exception: {error}",
+    "entity": "ENTITY",
+    "relation": "RELATION",
+    "attributes": "ATTRIBUTES",
+    "examples": "EXAMPLES",
+    "connections": "CONNECTIONS",
+    "generatedEntityTypes": "GENERATED ENTITY TYPES",
+    "generatedRelationTypes": "GENERATED RELATION TYPES",
+    "systemDashboard": "SYSTEM DASHBOARD",
+    "noProject": "NO_PROJECT"
   },
   "step2": {
     "simInstanceInit": "Simulation Instance Initialization",

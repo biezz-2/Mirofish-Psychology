@@ -40,7 +40,7 @@ if (messages.id && messages.en) {
   messages.id = deepMerge(messages.en, messages.id)
 }
 
-const savedLocale = localStorage.getItem('locale') || 'zh'
+const savedLocale = localStorage.getItem('locale') || 'id'
 
 const i18n = createI18n({
   legacy: false,

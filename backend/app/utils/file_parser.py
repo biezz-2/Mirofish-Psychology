@@ -146,8 +146,8 @@ class FileParser:
 
 def split_text_into_chunks(
     text: str, 
-    chunk_size: int = 500, 
-    overlap: int = 50
+    chunk_size: int = 5000, 
+    overlap: int = 5000
 ) -> List[str]:
     """
     将文本分割成小块

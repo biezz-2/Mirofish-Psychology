@@ -818,8 +818,8 @@ onUnmounted(() => {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #FAFAFA;
-  background-image: radial-gradient(#D0D0D0 1.5px, transparent 1.5px);
+  background-color: transparent;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   overflow: hidden;
 }
@@ -834,14 +834,14 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0));
   pointer-events: none;
 }
 
 .panel-title {
   font-size: 14px;
   font-weight: 600;
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   pointer-events: auto;
 }
 
@@ -855,24 +855,24 @@ onUnmounted(() => {
 .tool-btn {
   height: 32px;
   padding: 0 12px;
-  border: 1px solid #E0E0E0;
-  background: #FFF;
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   cursor: pointer;
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  backdrop-filter: blur(8px);
   font-size: 13px;
 }
 
 .tool-btn:hover {
-  background: #F5F5F5;
-  color: #000;
-  border-color: #CCC;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .tool-btn .btn-text {
@@ -902,13 +902,13 @@ onUnmounted(() => {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: #999;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .empty-icon {
   font-size: 48px;
   margin-bottom: 16px;
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 /* Entity Types Legend - Bottom Left */
@@ -916,11 +916,12 @@ onUnmounted(() => {
   position: absolute;
   bottom: 24px;
   left: 24px;
-  background: rgba(255,255,255,0.95);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
   padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #EAEAEA;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   z-index: 10;
 }
 
@@ -928,7 +929,7 @@ onUnmounted(() => {
   display: block;
   font-size: 11px;
   font-weight: 600;
-  color: #E91E63;
+  color: #ff4500;
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -946,7 +947,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .legend-dot {
@@ -968,11 +969,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #FFF;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
   padding: 8px 14px;
   border-radius: 20px;
-  border: 1px solid #E0E0E0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   z-index: 10;
 }
 
@@ -996,7 +998,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #E0E0E0;
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 22px;
   transition: 0.3s;
 }
@@ -1014,7 +1016,7 @@ onUnmounted(() => {
 }
 
 input:checked + .slider {
-  background-color: #7B2D8E;
+  background-color: #ff4500;
 }
 
 input:checked + .slider:before {
@@ -1023,7 +1025,7 @@ input:checked + .slider:before {
 
 .toggle-label {
   font-size: 12px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Detail Panel - Right Side */
@@ -1033,16 +1035,18 @@ input:checked + .slider:before {
   right: 20px;
   width: 320px;
   max-height: calc(100% - 100px);
-  background: #FFF;
-  border: 1px solid #EAEAEA;
-  border-radius: 10px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   overflow: hidden;
-  font-family: 'Noto Sans SC', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 13px;
   z-index: 20;
   display: flex;
   flex-direction: column;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .detail-panel-header {
@@ -1050,14 +1054,14 @@ input:checked + .slider:before {
   justify-content: space-between;
   align-items: center;
   padding: 14px 16px;
-  background: #FAFAFA;
-  border-bottom: 1px solid #EEE;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
 }
 
 .detail-title {
   font-weight: 600;
-  color: #333;
+  color: #fff;
   font-size: 14px;
 }
 
@@ -1075,14 +1079,14 @@ input:checked + .slider:before {
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: #999;
+  color: rgba(255, 255, 255, 0.4);
   line-height: 1;
   padding: 0;
   transition: color 0.2s;
 }
 
 .detail-close:hover {
-  color: #333;
+  color: #fff;
 }
 
 .detail-content {
@@ -1099,14 +1103,14 @@ input:checked + .slider:before {
 }
 
 .detail-label {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
   font-weight: 500;
   min-width: 80px;
 }
 
 .detail-value {
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   flex: 1;
   word-break: break-word;
 }
@@ -1114,24 +1118,24 @@ input:checked + .slider:before {
 .detail-value.uuid-text {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: #666;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .detail-value.fact-text {
   line-height: 1.5;
-  color: #444;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .detail-section {
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px solid #F0F0F0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .section-title {
   font-size: 12px;
   font-weight: 600;
-  color: #666;
+  color: rgba(255, 255, 255, 0.5);
   margin-bottom: 10px;
 }
 
@@ -1147,19 +1151,19 @@ input:checked + .slider:before {
 }
 
 .property-key {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
   min-width: 90px;
 }
 
 .property-value {
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   flex: 1;
 }
 
 .summary-text {
   line-height: 1.6;
-  color: #444;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 12px;
 }
 
