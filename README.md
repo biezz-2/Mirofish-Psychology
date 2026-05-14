@@ -28,6 +28,7 @@
 This repository extends **MiroFish** with **Notion → Google Workspace** sync, **research analysis & question** APIs (OpenAI-compatible LLM, e.g. **NVIDIA NIM**), and the Vue hub at **`/integration`**.
 
 - **[docs/PANDUAN_LENGKAP.md](./docs/PANDUAN_LENGKAP.md)** — full Indonesian guide: architecture, env, Notion, Google service account, API reference, GitHub, **Vercel**, backend hosting, troubleshooting.
+- **[docs/VERCEL_LANGKAH.md](./docs/VERCEL_LANGKAH.md)** — checklist langkah UI Vercel (root `frontend`, env `VITE_API_BASE_URL`).
 - **[DEPLOYMENT.md](./DEPLOYMENT.md)** — short technical deploy summary.
 - **[.github/workflows/ci.yml](./.github/workflows/ci.yml)** — CI: frontend build + Vitest + backend pytest.
 
