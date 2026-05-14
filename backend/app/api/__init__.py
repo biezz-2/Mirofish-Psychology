@@ -1,0 +1,18 @@
+"""
+API路由模块
+"""
+
+from flask import Blueprint
+
+graph_bp = Blueprint('graph', __name__)
+simulation_bp = Blueprint('simulation', __name__)
+report_bp = Blueprint('report', __name__)
+integration_bp = Blueprint('integration', __name__)
+research_bp = Blueprint('research', __name__)
+
+from . import graph  # noqa: E402, F401
+from . import simulation  # noqa: E402, F401
+from . import report  # noqa: E402, F401
+from . import integration  # noqa: E402, F401
+from . import research_api  # noqa: E402, F401
+

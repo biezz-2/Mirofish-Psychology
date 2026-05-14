@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "foq-001",
+      "method": "foq",
+      "question": "Bagaimana pengalaman Anda dengan strategi coping saat ini?",
+      "rationale": "Menilai mekanisme koping secara terbuka."
+    },
+    {
+      "id": "crit-001",
+      "method": "critical",
+      "question": "Mengapa pola tidur buruk mungkin memperparah gejala yang dilaporkan?",
+      "rationale": "Menghubungkan variabel perilaku dengan outcome."
+    },
+    {
+      "id": "quant-001",
+      "method": "quantitative",
+      "question": "Seberapa setuju Anda (1-5) bahwa dukungan sosial membantu pemulihan?",
+      "rationale": "Skala Likert untuk dukungan sosial."
+    }
+  ]
+}

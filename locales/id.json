@@ -1,0 +1,20 @@
+{
+  "integration": {
+    "title": "Notion → Google Workspace",
+    "subtitle": "Saluran data psikologi (PRD)",
+    "statusTitle": "Status koneksi",
+    "preview": "Pratinjau Notion",
+    "startSync": "Mulai sinkron",
+    "jobId": "ID tugas",
+    "refresh": "Segarkan status",
+    "analyze": "Jalankan analisis AI",
+    "questions": "Buat pertanyaan penelitian",
+    "questionBank": "Bank pertanyaan",
+    "loading": "Memuat…",
+    "hintNotion": "Perlu NOTION_API_KEY dan database dibagikan ke integrasi kamu."
+  },
+  "nav": {
+    "visitGithub": "Kunjungi GitHub",
+    "researchHub": "Pusat penelitian & data"
+  }
+}

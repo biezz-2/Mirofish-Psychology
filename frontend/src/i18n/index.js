@@ -1,0 +1,53 @@
+import { createI18n } from 'vue-i18n'
+import languages from '../../../locales/languages.json'
+
+const localeFiles = import.meta.glob('../../../locales/!(languages).json', { eager: true })
+
+const messages = {}
+const availableLocales = []
+
+function deepMerge(base, override) {
+  if (!base) return { ...override }
+  const out = Array.isArray(base) ? [...base] : { ...base }
+  for (const k of Object.keys(override || {})) {
+    const v = override[k]
+    const b = base[k]
+    if (
+      v &&
+      typeof v === 'object' &&
+      !Array.isArray(v) &&
+      b &&
+      typeof b === 'object' &&
+      !Array.isArray(b)
+    ) {
+      out[k] = deepMerge(b, v)
+    } else {
+      out[k] = v
+    }
+  }
+  return out
+}
+
+for (const path in localeFiles) {
+  const key = path.match(/\/([^/]+)\.json$/)[1]
+  if (languages[key]) {
+    messages[key] = localeFiles[path].default
+    availableLocales.push({ key, label: languages[key].label })
+  }
+}
+
+if (messages.id && messages.en) {
+  messages.id = deepMerge(messages.en, messages.id)
+}
+
+const savedLocale = localStorage.getItem('locale') || 'zh'
+
+const i18n = createI18n({
+  legacy: false,
+  locale: savedLocale,
+  fallbackLocale: ['en', 'zh'],
+  messages
+})
+
+export { availableLocales }
+export default i18n
